@@ -13,12 +13,37 @@
 
 get_header(); ?>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
 
-		<?php if ( have_posts() ) : ?>
+<section id="intro" class="skrollrSlide intro fullHeight">
+	<h1 clas="sr-only"><?php bloginfo('description'); ?></h1>
+	<div class="bcg"
+	data-center="background-position: 50% 0px;"
+	data-top-bottom="background-position: 50% -200px;"
+	data-bottom-top="background-position: 50% 200px;"
+	data-anchor-target="#intro"
+		style="background-image:url('<?php echo $splashImg; ?>')">
+	<figure class="arrow col-xs-12"
+	data-bottom="opacity: 1"
+	data-center-bottom="opacity: 0"
+	data-anchor-target="#intro">
+		<img src="<?php bloginfo('template_directory'); ?>/img/downarrow.png" alt="Scroll Down">
+	</figure>
+</div>
+</section>
 
-			<?php /* Start the Loop */ ?>
+<section id="portfolio" class="skrollrSlide">
+	<h1 class="sr-only">Portfolio</h1>
+	<?php query_posts(); ?>
+	<?php if ( have_posts() ) : ?>
+
+		<div
+		data-bottom-top="opacity: 0"
+		data-center-top="opacity: 1"
+		data-center-bottom="opacity: 1"
+		data-top-bottom="opacity: 0.25"
+		data-anchor-target="#portfolio">
+		<ul class="clearfix list-unstyled">
+
 			<?php while ( have_posts() ) : the_post(); ?>
 
 				<?php
@@ -27,20 +52,68 @@ get_header(); ?>
 					 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
 					 */
 					get_template_part( 'content', get_post_format() );
-				?>
+					?>
 
-			<?php endwhile; ?>
+				<?php endwhile; ?>
 
-			<?php the_posts_navigation(); ?>
+			</ul><!-- End Portfolio -->
+		</div>
 
-		<?php else : ?>
+	<?php else : ?>
 
-			<?php get_template_part( 'content', 'none' ); ?>
+		<?php get_template_part( 'content', 'none' ); ?>
 
-		<?php endif; ?>
+	<?php endif; ?>
 
-		</main><!-- #main -->
-	</div><!-- #primary -->
+	<?php wp_reset_query(); ?>
+</section>
 
-<?php get_sidebar(); ?>
+
+<section id="about" class="skrollrSlide fullHeight">
+	<div class="container"
+	data-bottom-top="opacity: 0"
+	data-center-top="opacity: 1"
+	data-anchor-target="#about"
+	>
+	<?php query_posts(); ?>
+	<?php if ( have_posts() ) : ?>
+
+		<?php while ( have_posts() ) : the_post(); ?>
+
+			<h1><?php the_title(); ?></h1>
+
+			<h2>
+				<?php echo $tagline; ?>
+			</h2>
+
+			<h3>
+				<?php echo $subhead; ?>
+			</h3>
+			<div class="row">
+				<p class="skills col-xs-12 col-sm-4">
+					<?php echo $skills1; ?>
+				</p>
+
+				<p class="skills col-xs-12 col-sm-4">
+					<?php echo $skills2; ?>
+				</p>
+
+				<p class="skills col-xs-12 col-sm-4">
+					<?php echo $skills3; ?>
+				</p>
+			</div><!-- /row -->
+
+		<?php endwhile; ?>
+
+	<?php else : ?>
+
+		<?php get_template_part( 'content', 'none' ); ?>
+
+	<?php endif; ?>
+
+	<?php wp_reset_query(); ?>
+
+	</div>
+</section>
+
 <?php get_footer(); ?>
