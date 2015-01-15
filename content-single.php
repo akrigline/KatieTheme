@@ -6,7 +6,6 @@
 
 <?php
 	$postID = get_the_ID();
-	$thumb = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ) );
 	$images = get_children(array(
 			'exclude' => get_post_thumbnail_id(),
 			'post_parent' => $post->ID,
@@ -27,12 +26,20 @@
 
   <ul class="imageGallery list-unstyled">
 		<?php foreach ($images as $image) {
-					$attachmenturl = wp_get_attachment_url( $image->ID );
-					$attachmentimage = wp_get_attachment_image_src( $image->ID );
-					$attachmentalt = wp_get_attachment_image( $image->ID, 'alt' ); ?>		    
+				$attachmenturl = wp_get_attachment_url( $image->ID );
+				$imageSm = wp_get_attachment_image_src( $image->ID, 'thumbnail' );
+				$imageMd = wp_get_attachment_image_src( $image->ID, 'medium' );
+				$imageLg = wp_get_attachment_image_src( $image->ID, 'large' );
+				$imageXl = wp_get_attachment_image_src( $image->ID, 'full' );
+				$attachmentalt = wp_get_attachment_image( $image->ID, 'alt' ); ?>   
 		  <li>
 		    <figure>
-		      <img src="<?php echo $attachmentimage[0]; ?>" alt="<?php echo $attachmentalt; ?>">
+		      <img sizes="100vw" 
+		      			srcset="<?php echo $imageSm[0]; ?> <?php echo $imageSm[1]; ?>w, 
+		      							<?php echo $imageMd[0]; ?> <?php echo $imageMd[1]; ?>w, 
+		      							<?php echo $imageLg[0]; ?> <?php echo $imageLg[1]; ?>w, 
+		      							<?php echo $imageXl[0]; ?> <?php echo $imageXl[1]; ?>w"
+					      alt="<?php echo $attachmentalt; ?>">
 		      <figcaption>
 		        <h5><?php echo $attachmentalt; ?></h5>
 		      </figcaption>
