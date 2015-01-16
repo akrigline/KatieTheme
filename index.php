@@ -15,25 +15,41 @@ get_header(); ?>
 
 
 <section id="intro" class="skrollrSlide intro fullHeight">
-	<h1 clas="sr-only"><?php bloginfo('description'); ?></h1>
+
+	<?php query_posts('category_name=intro&posts_per_page=1'); ?>
+	<?php if ( have_posts() ) : ?>
+		<?php while ( have_posts() ) : the_post(); ?>
+			<?php $splashImg = get_field('intro_image'); ?>
+	<h1 class="sr-only"><?php bloginfo('description'); ?></h1>
+
+	<div id="preload" class="sr-only">
+		<img src="<?php echo $splashImg['url']; ?>">
+	</div>
+
 	<div class="bcg"
-	data-center="background-position: 50% 0px;"
-	data-top-bottom="background-position: 50% -200px;"
-	data-bottom-top="background-position: 50% 200px;"
-	data-anchor-target="#intro"
-		style="background-image:url('<?php echo $splashImg; ?>')">
-	<figure class="arrow col-xs-12"
-	data-bottom="opacity: 1"
-	data-center-bottom="opacity: 0"
-	data-anchor-target="#intro">
-		<img src="<?php bloginfo('template_directory'); ?>/img/downarrow.png" alt="Scroll Down">
-	</figure>
-</div>
+				data-center="background-position: 50% 0px;"
+				data-top-bottom="background-position: 50% -200px;"
+				data-bottom-top="background-position: 50% 200px;"
+				data-anchor-target="#intro"
+				style="background-image:url('<?php echo $splashImg['url']; ?>')">
+		<figure class="arrow col-xs-12"
+		data-bottom="opacity: 1"
+		data-center-bottom="opacity: 0"
+		data-anchor-target="#intro">
+			<img src="<?php bloginfo('template_directory'); ?>/img/downarrow.png" alt="Scroll Down">
+		</figure>
+
+	</div>
+
+	<?php endwhile; ?>
+	<?php else : ?>
+	<?php endif; ?>
+	<?php wp_reset_query(); ?>
 </section>
 
 <section id="portfolio" class="skrollrSlide">
 	<h1 class="sr-only">Portfolio</h1>
-	<?php query_posts(); ?>
+	<?php query_posts('category_name=work'); ?>
 	<?php if ( have_posts() ) : ?>
 
 		<div
@@ -75,7 +91,7 @@ get_header(); ?>
 	data-center-top="opacity: 1"
 	data-anchor-target="#about"
 	>
-	<?php query_posts(); ?>
+	<?php query_posts('category_name=about'); ?>
 	<?php if ( have_posts() ) : ?>
 
 		<?php while ( have_posts() ) : the_post(); ?>
@@ -113,7 +129,7 @@ get_header(); ?>
 
 	<?php wp_reset_query(); ?>
 
-	</div>
+</div>
 </section>
 
 <?php get_footer(); ?>

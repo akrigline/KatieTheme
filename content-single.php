@@ -31,7 +31,7 @@
 				$imageMd = wp_get_attachment_image_src( $image->ID, 'medium' );
 				$imageLg = wp_get_attachment_image_src( $image->ID, 'large' );
 				$imageXl = wp_get_attachment_image_src( $image->ID, 'full' );
-				$attachmentalt = wp_get_attachment_image( $image->ID, 'alt' ); ?>   
+				$attachmentalt = wp_get_attachment_image( $image->ID, 'full', 0, 'alt' ); ?>   
 		  <li>
 		    <figure>
 		      <img sizes="100vw" 
@@ -55,7 +55,7 @@
       <?php foreach ($images as $image) {
 					$attachmenturl = wp_get_attachment_url( $image->ID );
 					$attachmentimage = wp_get_attachment_image_src( $image->ID, thumbnail );
-					$attachmentalt = wp_get_attachment_image( $image->ID, 'alt' ); ?>
+					$attachmentalt = wp_get_attachment_image( $image->ID, 'full', 0, 'alt' ); ?>
 				<?php $count++; ?>
 			  <li>
 			    <a href="" data-slide-index="<?php echo $count; ?>">

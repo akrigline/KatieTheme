@@ -6,11 +6,11 @@
 
 <?php
 	$postID = get_the_ID();
-	$thumbID = get_post_thumbnail_id( $post->ID )
-	$thumbSm = wp_get_attachment_image_src( $thumbID, 'thumbnail' );
-	$thumbMd = wp_get_attachment_image_src( $thumbID, 'medium' );
-	$thumbLg = wp_get_attachment_image_src( $thumbID, 'large' );
-	$thumbXl = wp_get_attachment_image_src( $thumbID, 'full' );
+	$thumbID = get_post_thumbnail_id( $post->ID );
+	$thumbSm = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'thumbnail' );
+	$thumbMd = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'medium' );
+	$thumbLg = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'large' );
+	$thumbXl = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
 ?>
 
 <li class="col-xs-6 col-sm-6 col-md-4">

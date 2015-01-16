@@ -22,12 +22,14 @@
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 
-	<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/jsquery.bxslider.css">
+	<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/jquery.bxslider.css">
   <link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/bootstrap.min.css">
+  <link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/style.css">
+
+<?php wp_head(); ?>
 
   <script src="<?php bloginfo('template_directory');?>/js/vendor/picturefill.min.js"></script>
   <script src="<?php bloginfo('template_directory');?>/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-<?php wp_head(); ?>
 </head>
 
 
