@@ -95,6 +95,12 @@ get_header(); ?>
 	<?php if ( have_posts() ) : ?>
 
 		<?php while ( have_posts() ) : the_post(); ?>
+			<?php $tagline = get_field('tagline');
+						$subhead = get_field('subhead');
+						$skills1 = get_field('skills1');
+						$skills2 = get_field('skills2');
+						$skills3 = get_field('skills3');
+						?>
 
 			<h1><?php the_title(); ?></h1>
 

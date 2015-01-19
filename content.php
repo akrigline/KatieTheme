@@ -15,7 +15,7 @@
 
 <li class="col-xs-6 col-sm-6 col-md-4">
 	<figure>
-	    <img sizes="100vw" 
+	    <img sizes="(min-width:992px) 33.33vw, 50vw" 
     			srcset="<?php echo $thumbSm[0]; ?> <?php echo $thumbSm[1]; ?>w, 
     							<?php echo $thumbMd[0]; ?> <?php echo $thumbMd[1]; ?>w, 
     							<?php echo $thumbLg[0]; ?> <?php echo $thumbLg[1]; ?>w, 

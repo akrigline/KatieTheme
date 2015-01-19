@@ -3,6 +3,8 @@ $window = $(window);
 $slide = $('.skrollrSlide');
 $body = $('body');
 
+var sum = 0;
+
   //FadeIn all sections
   $body.imagesLoaded( function() {
     setTimeout(function() {
@@ -14,6 +16,7 @@ $body = $('body');
         $body.removeClass('loading').addClass('loaded');
         
     }, 100);
+
   });
   
   function adjustWindow(){
@@ -21,6 +24,9 @@ $body = $('body');
   var s = skrollr.init({
     forceHeight: false
   });
+
+  $('.thumbnails li').each( function(){ sum +=  $(this).width(); });
+  $('.thumbnails').width( sum );
 }
 
 
@@ -34,11 +40,6 @@ $(document).ready(function(){
 
 
 //Set Thumbnails width correctly
-var sum=0;
-$(document).ready(function(){
-  $('.thumbnails li').each( function(){ sum +=  $(this).width(); });
-  $('.thumbnails').width( sum );
-});
 $(window).resize(function(){
   $('.thumbnails li').each( function(){ sum +=  $(this).width(); });
   $('.thumbnails').width( sum );
